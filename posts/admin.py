@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.contrib.admin import ModelAdmin 
+from django.contrib.admin import ModelAdmin
 from django.utils.html import mark_safe
 
-from .models import Post
+from .models import Post, Like
+
 
 class PostAdmin(ModelAdmin):
     list_display = ["author", "display_file", "caption", "created_at"]
@@ -17,4 +18,9 @@ class PostAdmin(ModelAdmin):
     display_file.short_description = 'File'
 
 
+class LikeAdmin(ModelAdmin):
+    list_display = ["user", "post", "created_at"]
+
+
 admin.site.register(Post, PostAdmin)
+admin.site.register(Like, LikeAdmin)
