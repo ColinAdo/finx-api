@@ -4,10 +4,14 @@ from shortuuid.django_fields import ShortUUIDField
 
 import magic
 
+def user_directory_path(instance, filename):
+    return "posts/{0}/{1}".format(instance.author.username, filename)
+
+
 class Post(models.Model):
     uuid = ShortUUIDField(max_length=10, length=10, unique=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    file = models.FileField(upload_to="posts", blank=True)
+    file = models.FileField(upload_to=user_directory_path, blank=True)
     caption = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -26,3 +30,7 @@ class Post(models.Model):
     def __str__(self):
         return self.author.username
 
+class LikePost(models.Model):
+    # user
+    # post
+    pass

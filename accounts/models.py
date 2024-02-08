@@ -1,11 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+def user_directory_path(instance, filename):
+    return "profile/{0}/{1}".format(instance.username, filename)
+
 class CustomUser(AbstractUser):
     header = models.CharField(max_length=200, blank=True, null=True)
     # profession = models.CharField(max_length=200, blank=True, null=True)
     # location = models.CharField(max_length=200, blank=True, null=True)
-    profile_picture = models.ImageField(max_length=200, default="profile.png" , upload_to='profile')
+    profile_picture = models.ImageField(max_length=200, default="profile.png", upload_to=user_directory_path)
     github = models.URLField(max_length=200, blank=True, null=True)
     instagram = models.URLField(max_length=200, blank=True, null=True)
     x = models.URLField(max_length=200, blank=True, null=True)
