@@ -28,10 +28,10 @@ class TestPost(TestCase):
 
     def test_get_file_type(self):
         post = Post.objects.get(id=1)
-        post.file = "posts/Cake_food_white_1.png"
+        post.file = "posts/tests.png"
         post.save()
 
-        self.assertEqual(post.file, "posts/Cake_food_white_1.png")
+        self.assertEqual(post.file, "posts/tests.png")
         self.assertEqual(post.get_file_type(), "image")
 
     def test_return_string(self):
