@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from django.utils.html import mark_safe
 
-from .models import Post, Like
+from .models import Post, Like, Comment
 
 
 class PostAdmin(ModelAdmin):
@@ -22,5 +22,10 @@ class LikeAdmin(ModelAdmin):
     list_display = ["user", "post", "created_at"]
 
 
+class CommentAdmin(ModelAdmin):
+    list_display = ["user", "post", "created_at"]
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Like, LikeAdmin)
+admin.site.register(Comment, CommentAdmin)
