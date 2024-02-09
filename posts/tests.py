@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from .models import Post, Like
+from .models import Post, Like, Comment
 
 
 class TestPost(TestCase):
@@ -86,3 +86,44 @@ class TestLike(TestCase):
             post=self.post
         )
         self.assertEqual(str(like), f"{self.user2.username} liked the post")
+
+
+class TestComment(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        User = get_user_model()
+        cls.user1 = User.objects.create(
+            username="testuser1",
+            email="testuser1@example.com"
+        )
+        cls.user2 = User.objects.create(
+            username="testuser2",
+            email="testuser2@example.com"
+        )
+
+        cls.post = Post.objects.create(
+            author=cls.user1,
+            caption="Caption"
+        )
+
+    def test_commenting_on_post(self):
+        comment = Comment.objects.create(
+            user=self.user2,
+            post=self.post,
+            content="This is a test comment"
+        )
+
+        commented_by = comment.user.username
+
+        self.assertEqual(commented_by, self.user2.username)
+        self.assertEqual(comment.post, self.post)
+        self.assertEqual(self.user2.comment_set.all().count(), 1)
+        self.assertEqual(self.post.comment_set.all().count(), 1)
+
+    def test_return_string(self):
+        comment = Comment.objects.create(
+            user=self.user2,
+            post=self.post
+        )
+        self.assertEqual(str(comment), f"{self.user2.username} commented on this post")
