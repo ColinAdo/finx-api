@@ -13,6 +13,10 @@ class TestPost(TestCase):
             username="testuser1",
             email="testuser1@example.com"
         )
+        cls.user2 = User.objects.create(
+            username="testuser2",
+            email="testuser2@example.com"
+        )
 
         cls.post = Post.objects.create(
             author=cls.user1,
@@ -37,4 +41,8 @@ class TestPost(TestCase):
     def test_return_string(self):
         self.assertEqual(str(self.post), self.user1.username)
 
-    # def test_get_following_posts(self):
+    def test_get_following_posts(self):
+        self.user2.follow(self.user1)
+        following_post = self.user1.get_following_posts()
+        self.assertEqual(self.user2.is_following(self.user1), True)
+        self.assertEqual(following_post.count(), 1)
