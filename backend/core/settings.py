@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # local apps
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
-    'socials.apps.SocialsConfig',
 ]
 
 MIDDLEWARE = [
