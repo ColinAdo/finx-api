@@ -9,20 +9,20 @@ class TestPost(TestCase):
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
-        cls.user = User.objects.create(
-            username="testuser",
-            email="testuser@example.com"
+        cls.user1 = User.objects.create(
+            username="testuser1",
+            email="testuser1@example.com"
         )
 
         cls.post = Post.objects.create(
-            author=cls.user,
+            author=cls.user1,
             caption="Caption"
         )
 
     def test_post_contents(self):
         post = Post.objects.all().count()
 
-        self.assertEqual(self.post.author, self.user)
+        self.assertEqual(self.post.author, self.user1)
         self.assertEqual(self.post.caption, "Caption")
         self.assertEqual(post, 1)
 
@@ -35,4 +35,6 @@ class TestPost(TestCase):
         self.assertEqual(post.get_file_type(), "image")
 
     def test_return_string(self):
-        self.assertEqual(str(self.post), self.user.username)
+        self.assertEqual(str(self.post), self.user1.username)
+
+    # def test_get_following_posts(self):
