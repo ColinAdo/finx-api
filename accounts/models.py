@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from posts.models import Post
+
 def user_directory_path(instance, filename):
     return "profile/{0}/{1}".format(instance.username, filename)
 
@@ -26,6 +28,7 @@ class CustomUser(AbstractUser):
     def is_following(self, user):
         return self.followers.filter(id=user.id).exists()
     
-    # TODO:
-    # Get post of the user and the users he/she is following
+    def get_following_posts(self):
+        followed_ids = self.followers.values_list('id', flat=True)
+        return Post.objects.filter(author_id__in=followed_ids) | Post.objects.filter(author_id=self.id)
 
