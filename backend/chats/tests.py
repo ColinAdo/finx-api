@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from .models import Contact, Message
+from .models import Contact, Message, Chat
 
 
 class TestContact(TestCase):
@@ -69,3 +69,36 @@ class TestMessage(TestCase):
 
     def test_return_string(self):
         self.assertEqual(str(self.message), self.contact.user.username)
+
+
+class TestChat(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        User = get_user_model()
+        cls.user = User.objects.create(
+            username="test1",
+            email="test1@example.com",
+        )
+
+        cls.user2 = User.objects.create(
+            username="test2",
+            email="test2@example.com",
+        )
+
+        cls.contact = Contact.objects.create(user=cls.user)
+        cls.contact2 = Contact.objects.create(user=cls.user2)
+        cls.message = Message.objects.create(contact=cls.contact, content="Test Message")
+        cls.chat = Chat.objects.create()
+
+    def test_create_chat(self):
+        self.assertEqual(Chat.objects.count(), 1)
+
+    def test_chat_content(self):
+        self.chat.participants.add(self.contact, self.contact2)
+        self.chat.messages.add(self.message)
+
+        self.assertEqual(self.chat.participants.count(), 2)
+        self.assertEqual(self.chat.messages.all().count(), 1)
+        self.assertIn(self.contact, self.chat.participants.all())
+        self.assertIn(self.message, self.chat.messages.all())

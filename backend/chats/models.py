@@ -19,9 +19,6 @@ class Message(models.Model):
 class Chat(models.Model):
     participants = models.ManyToManyField(Contact, related_name="chats")
     messages = models.ManyToManyField(Message, blank=True)
-
-    def get_last_10_messages(self):
-        return self.messages.objects.order_by("-timestamp").all()[:10]
     
     def __str__(self):
         return f"Chat - {self.pk}"
