@@ -17,7 +17,7 @@ class Message(models.Model):
         return self.contact.user.username
     
 class Chat(models.Model):
-    participants = models.ManyToManyField(Contact, related_name="chats", on_delete=models.CASCADE)
+    participants = models.ManyToManyField(Contact, related_name="chats")
     messages = models.ManyToManyField(Message, blank=True)
 
     def get_last_10_messages(self):
