@@ -15,4 +15,10 @@ class Message(models.Model):
 
     def __str__(self):
         return self.contact.user.username
+    
+class Chat(models.Model):
+    participants = models.ManyToManyField(Contact, related_name="chats", on_delete=models.CASCADE)
+    messages = models.ManyToManyField(Message, blank=True)
 
+    def get_last_10_messages(self):
+        return self.messages.objects.order_by("-timestamp").all()[:10]
