@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.utils import timezone
+from datetime import timedelta
 
 from .models import Contact, Message, Chat
 
@@ -58,8 +60,8 @@ class TestMessage(TestCase):
         )
 
         cls.contact = Contact.objects.create(user=cls.user)
-        cls.message = Message.objects.create(contact=cls.contact, content="Test Message")
-
+        cls.message = Message.objects.create(
+            contact=cls.contact, content="Test Message")
 
     def test_message_content(self):
 
@@ -88,7 +90,8 @@ class TestChat(TestCase):
 
         cls.contact = Contact.objects.create(user=cls.user)
         cls.contact2 = Contact.objects.create(user=cls.user2)
-        cls.message = Message.objects.create(contact=cls.contact, content="Test Message")
+        cls.message = Message.objects.create(
+            contact=cls.contact, content="Test Message")
         cls.chat = Chat.objects.create()
 
     def test_create_chat(self):
@@ -102,3 +105,6 @@ class TestChat(TestCase):
         self.assertEqual(self.chat.messages.all().count(), 1)
         self.assertIn(self.contact, self.chat.participants.all())
         self.assertIn(self.message, self.chat.messages.all())
+
+    def test_return_string(self):
+        self.assertEqual(str(self.chat), f"Chat - {self.chat.id}")
