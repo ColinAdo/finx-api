@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from .models import Post, Like, Comment
+from .models import Post, Comment
 
 
 class TestPost(TestCase):
@@ -30,6 +30,15 @@ class TestPost(TestCase):
         self.assertEqual(self.post.caption, "Caption")
         self.assertEqual(post, 1)
 
+    def test_post_likes(self):
+        post = Post.objects.get(id=1)
+        post.likes.add(self.user2)
+
+        self.assertEqual(post.likes.all().count(), 1)
+        self.assertEqual(self.user2.likes.all().count(), 1)
+        self.assertNotIn(self.user1, post.likes.all())
+        self.assertIn(self.user2, post.likes.all())
+
     def test_get_file_type(self):
         post = Post.objects.get(id=1)
         post.file = "posts/tests.png"
@@ -46,46 +55,6 @@ class TestPost(TestCase):
         following_post = self.user1.get_following_posts()
         self.assertEqual(self.user2.is_following(self.user1), True)
         self.assertEqual(following_post.count(), 1)
-
-
-class TestLike(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        User = get_user_model()
-        cls.user1 = User.objects.create(
-            username="testuser1",
-            email="testuser1@example.com"
-        )
-        cls.user2 = User.objects.create(
-            username="testuser2",
-            email="testuser2@example.com"
-        )
-
-        cls.post = Post.objects.create(
-            author=cls.user1,
-            caption="Caption"
-        )
-
-    def test_like_post(self):
-        like = Like.objects.create(
-            user=self.user2,
-            post=self.post
-        )
-
-        liked_by = like.user.username
-
-        self.assertEqual(liked_by, self.user2.username)
-        self.assertEqual(like.post, self.post)
-        self.assertEqual(self.user2.like_set.all().count(), 1)
-        self.assertEqual(self.post.like_set.all().count(), 1)
-
-    def test_return_string(self):
-        like = Like.objects.create(
-            user=self.user2,
-            post=self.post
-        )
-        self.assertEqual(str(like), f"{self.user2.username} liked the post")
 
 
 class TestComment(TestCase):
@@ -126,4 +95,5 @@ class TestComment(TestCase):
             user=self.user2,
             post=self.post
         )
-        self.assertEqual(str(comment), f"{self.user2.username} commented on this post")
+        self.assertEqual(
+            str(comment), f"{self.user2.username} commented on this post")
