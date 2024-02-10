@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import generics
 
 from .serializers import PostSerializer, CommentSerializer
@@ -27,5 +28,5 @@ class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         comment_id = self.kwargs['comment_pk']
-        obj = Comment.objects.get(id=comment_id)
+        obj = get_object_or_404(id=comment_id)
         return obj
