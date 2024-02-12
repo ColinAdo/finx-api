@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.db import models
-from shortuuid.django_fields import ShortUUIDField
 
 import magic
 
@@ -9,7 +8,6 @@ def user_directory_path(instance, filename):
 
 
 class Post(models.Model):
-    uuid = ShortUUIDField(max_length=10, length=10, unique=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     file = models.FileField(upload_to=user_directory_path, blank=True)
     caption = models.TextField(blank=True)
