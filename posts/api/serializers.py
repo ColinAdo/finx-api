@@ -12,7 +12,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     likes = UserSerializer(many=True, read_only=True)
     likes_count = serializers.SerializerMethodField()
-    
+
     liked_by_logged_in_user = serializers.SerializerMethodField()
 
     comments = serializers.SerializerMethodField()
@@ -21,29 +21,31 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            "id", 
-            "uuid", 
-            "file", 
+            "id",
+            "file",
             "caption",
-            "created_at", 
-            "author", 
-            "likes", 
-            "likes_count", 
-            "liked_by_logged_in_user", 
+            "created_at",
+            "author",
+            "likes",
+            "likes_count",
+            "liked_by_logged_in_user",
             "comments",
-            "comments_count", 
+            "comments_count",
         )
 
     def get_likes_count(self, obj):
         return len(obj.likes.all())
-    
+
     def get_liked_by_logged_in_user(self, obj):
-        user = self.context['request'].user
-        return [True if user in obj.likes.all() else False]
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user in obj.likes.all()
+        return False
     
     def get_comments(self, obj):
         comments = obj.comment_set.all()
         return CommentSerializer(comments, many=True).data
-    
+
     def get_comments_count(self, obj):
         return len(obj.comment_set.all())
