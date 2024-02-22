@@ -2,9 +2,9 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
 
-from .serializers import ChatSerializer, MessageSerializer
+from chats.api.serializers import ChatSerializer, MessageSerializer
 
-from ..models import Chat, Contact, Message
+from chats.models import Chat, Contact, Message
 
 
 def get_user_contact(username):

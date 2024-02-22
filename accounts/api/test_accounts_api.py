@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 
-from .serializers import UserSerializer
+from accounts.api.serializers import UserSerializer
 
 
 class TestUserApiListView(APITestCase):

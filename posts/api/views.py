@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, viewsets
 
-from .serializers import PostSerializer, CommentSerializer
+from posts.api.serializers import PostSerializer, CommentSerializer
 
-from ..models import Post, Comment
+from posts.models import Post, Comment
 
 class PostviewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
