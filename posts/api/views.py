@@ -1,18 +1,14 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
 from .serializers import PostSerializer, CommentSerializer
 
 from ..models import Post, Comment
 
-class PostListCreateView(generics.ListCreateAPIView):
+class PostviewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-
-class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
 
 class CommentListCreateView(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
@@ -28,5 +24,5 @@ class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         comment_id = self.kwargs['comment_pk']
-        obj = get_object_or_404(id=comment_id)
+        obj = get_object_or_404(Comment, id=comment_id)
         return obj
