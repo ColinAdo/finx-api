@@ -6,7 +6,7 @@ from rest_framework import status
 from accounts.api.serializers import UserSerializer
 
 
-class TestUserApiListView(APITestCase):
+class UserApiTestCase(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
@@ -17,39 +17,25 @@ class TestUserApiListView(APITestCase):
             password="TestUser",
         )
 
-    def test_get_users_list(self):
-        response = self.client.get(reverse("users"), format="json")
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    def test_get_users(self):
+        url = reverse("users")
+        response = self.client.get(url, format="json")
 
-    def test_users_expected_data(self):
-        response = self.client.get(reverse("users"), format="json")
         queryset = self.User.objects.all()
-
         expected_data = UserSerializer(queryset, many=True).data
 
         for user_data in expected_data:
             user_data['profile_picture'] = f"http://testserver{user_data['profile_picture']}"
 
-        self.assertEqual(queryset.count(), 1)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data, expected_data)
         self.assertContains(response, self.user)
-
-
-class TestUserApiDetailView(APITestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        cls.User = get_user_model()
-        cls.user = cls.User.objects.create(
-            username="TestUser",
-            email="TestUser@example.com",
-            password="TestUser",
-        )
-
-    def test_user_get_status(self):
-        response = self.client.get(
-            reverse("user-detail", kwargs={"pk": self.user.id}),
-            format="json")
+        
+    def test_retrieve_users(self):
+        url = reverse("user-detail", kwargs={"pk": self.user.id})
+        response = self.client.get(url, format="json")
 
         obj = self.User.objects.get(pk=self.user.id)
         expected_data = UserSerializer(obj).data
