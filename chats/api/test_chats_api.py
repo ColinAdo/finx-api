@@ -37,7 +37,7 @@ class TestChatApiListView(APITestCase):
         cls.chat.participants.add(cls.contact1)
         cls.chat.participants.add(cls.contact2)
 
-    def test_get_contact_list(self):
+    def test_get_contact(self):
         url = reverse("chats")
         response = self.client.get(url, format="json")
 
@@ -47,7 +47,7 @@ class TestChatApiListView(APITestCase):
         self.assertEqual(Chat.objects.count(), 1)
         self.assertEqual(chat.messages.count(), 0)
 
-    def test_chat_with_messages(self):
+    def test_get_chat_messages(self):
         message = Message.objects.create(
             contact=self.contact2,
             content="This message one"
@@ -65,7 +65,7 @@ class TestChatApiListView(APITestCase):
         self.assertEqual(chat.messages.count(), 1)
         self.assertEqual(chat.participants.count(), 2)
 
-    def test_get_chat_details(self):
+    def test_retrieve_chat(self):
         url = reverse("chat-detail", kwargs={"pk": self.chat.id})
         response = self.client.get(url, format="json")
 
