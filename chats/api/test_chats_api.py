@@ -37,7 +37,7 @@ class TestChatApiListView(APITestCase):
         cls.chat.participants.add(cls.contact1)
         cls.chat.participants.add(cls.contact2)
 
-    def test_get_contact(self):
+    def test_get_chats(self):
         url = reverse("chats")
         response = self.client.get(url, format="json")
 
