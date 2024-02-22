@@ -8,7 +8,7 @@ from chats.api.serializers import ChatSerializer
 from chats.models import Chat, Contact, Message
 
 
-class TestChatApiListView(APITestCase):
+class ChatApiTestCase(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
