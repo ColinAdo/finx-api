@@ -4,7 +4,6 @@ from django.utils.html import mark_safe
 
 from .models import Post, Comment
 
-
 class PostAdmin(ModelAdmin):
     list_display = ["author", "display_file", "caption", "created_at"]
 
@@ -20,7 +19,6 @@ class PostAdmin(ModelAdmin):
 
 class CommentAdmin(ModelAdmin):
     list_display = ["user", "post", "created_at"]
-
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
