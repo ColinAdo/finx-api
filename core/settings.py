@@ -36,6 +36,7 @@ INSTALLED_APPS = [
 
     # 3rd party libraries
     'rest_framework',
+    'djoser',
 
     # local apps
     'accounts.apps.AccountsConfig',
@@ -84,6 +85,15 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.ISAuthenticated'
+    ]
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
