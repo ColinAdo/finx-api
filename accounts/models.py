@@ -7,6 +7,8 @@ def user_directory_path(instance, filename):
     return "profile/{0}/{1}".format(instance.username, filename)
 
 class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=255)
     header = models.CharField(max_length=200, blank=True, null=True)
     # profession = models.CharField(max_length=200, blank=True, null=True)
     # location = models.CharField(max_length=200, blank=True, null=True)
@@ -32,3 +34,8 @@ class CustomUser(AbstractUser):
         followed_ids = self.followers.values_list('id', flat=True)
         return Post.objects.filter(author_id__in=followed_ids) | Post.objects.filter(author_id=self.id)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    def __str__(self):
+        return self.username
