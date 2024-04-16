@@ -11,6 +11,7 @@ dotenv_file = BASE_DIR / '.env.local'
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
+DEVELOPMENT_MODE = os.getenv('DEVELOPMENT_MODE', 'False') == 'True'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -85,14 +86,25 @@ DATABASES = {
     }
 }
 
+# Rest framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.ISAuthenticated'
+        'rest_framework.permissions.IsAuthenticated'
     ]
+}
+
+# Djoser settings
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'ACTIVATION_URL': 'activation/{uid}/{token}',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'TOKEN_MODEL': None,
 }
 
 # Password validation
