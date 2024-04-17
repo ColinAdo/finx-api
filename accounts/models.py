@@ -3,9 +3,11 @@ from django.db import models
 
 from posts.models import Post
 
+# upload directory path
 def user_directory_path(instance, filename):
     return "profile/{0}/{1}".format(instance.username, filename)
 
+# Custom user model
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=255)
