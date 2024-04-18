@@ -4,7 +4,7 @@ from chats.models import Chat, Contact, Message
 
 from accounts.api.serializers import UserSerializer
 
-
+#  Contact serialiser class 
 class ContactSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
 
