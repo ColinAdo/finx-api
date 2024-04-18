@@ -5,7 +5,7 @@ from datetime import timedelta
 
 from .models import Contact, Message, Chat
 
-
+# Test contact test case
 class TestContact(TestCase):
 
     @classmethod
