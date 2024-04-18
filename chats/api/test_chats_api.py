@@ -7,7 +7,7 @@ from rest_framework.test import APITestCase
 from chats.api.serializers import ChatSerializer
 from chats.models import Chat, Contact, Message
 
-
+# Test chat test case
 class ChatApiTestCase(APITestCase):
 
     @classmethod
