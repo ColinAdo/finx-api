@@ -162,4 +162,7 @@ AWS_SES_REGION_ENDPOINT = f'email.{AWS_SES_REGION_NAME}.amazonaws.com'
 AWS_SES_FROM_EMAIL = os.getenv('AWS_SES_FROM_EMAIL')
 USE_SES_V2 = True
 
+DOMAIN = os.getenv("DOMAIN")
+SITE_NAME = "Finix"
+
 AUTH_USER_MODEL = "accounts.CustomUser"
