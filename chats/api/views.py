@@ -6,7 +6,7 @@ from chats.api.serializers import ChatSerializer, MessageSerializer
 
 from chats.models import Chat, Contact, Message
 
-
+# Helper function to get user contact
 def get_user_contact(username):
     User = get_user_model()
     user = get_object_or_404(User, username=username)
