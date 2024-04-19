@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party libraries
+    'corsheaders',
     'rest_framework',
     'djoser',
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -106,6 +108,14 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'TOKEN_MODEL': None,
 }
+
+# cors header settings
+CORS_ALLOWED_ORIGINS = os.getenv(
+    'CORS_ALLOWED_ORIGINS', 
+    'http://localhost:3000, http://127.0.0.1:3000'
+).split(',')
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
