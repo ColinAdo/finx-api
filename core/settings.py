@@ -91,7 +91,8 @@ DATABASES = {
 # Rest framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'core.authentications.CustomJWTAuthentication',
     ],
 
     'DEFAULT_PERMISSION_CLASSES': [
@@ -116,6 +117,8 @@ CORS_ALLOWED_ORIGINS = os.getenv(
 ).split(',')
 
 CORS_ALLOW_CREDENTIALS = True
+
+AUTH_COOKIE = 'access'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
