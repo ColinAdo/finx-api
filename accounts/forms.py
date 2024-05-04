@@ -9,13 +9,6 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = UserCreationForm.Meta.fields + (
             "email",
-            "header", 
-            "profile_picture",
-            "github", 
-            "instagram", 
-            "x", 
-            "linkedin", 
-            "followers",
             )
         
 class CustomUserChangeForm(UserChangeForm):
