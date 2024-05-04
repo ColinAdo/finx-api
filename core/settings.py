@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # local apps
     'accounts.apps.AccountsConfig',
+    'profiles.apps.ProfilesConfig',
     'posts.apps.PostsConfig',
     'chats.apps.ChatsConfig',
 ]
