@@ -1,28 +1,15 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, viewsets
+from rest_framework import viewsets, permissions
 
-from posts.api.serializers import PostSerializer, CommentSerializer
+from posts.api.serializers import PostSerializer
+from posts.api.permissions import IsOwnerOrReadOnly
 
-from posts.models import Post, Comment
+from posts.models import Post
 
 class PostviewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-
-class CommentListCreateView(generics.ListCreateAPIView):
-    serializer_class = CommentSerializer
-
-    def get_queryset(self):
-        post_id = self.kwargs['pk']
-        queryset = Comment.objects.filter(post_id=post_id)
-        return queryset
-    
-
-class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = CommentSerializer    
-
-    def get_object(self):
-        comment_id = self.kwargs['comment_pk']
-        obj = get_object_or_404(Comment, id=comment_id)
-        return obj
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
