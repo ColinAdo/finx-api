@@ -6,7 +6,16 @@ from likes.api.serializers import LikeSerializer
 
 class PostSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
+    comments_count = serializers.SerializerMethodField()
+
     likes = LikeSerializer(many=True, read_only=True)
+    likes_count = serializers.SerializerMethodField()
+
+    def get_likes_count(self, obj):
+        return obj.likes.count()
+    
+    def get_comments_count(self, obj):
+        return obj.comments.count()
 
     class Meta:
         model = Post
@@ -16,6 +25,8 @@ class PostSerializer(serializers.ModelSerializer):
             "caption",
             "created_at",
             'comments',
-            'likes'
+            'comments_count',
+            'likes',
+            'likes_count'
         )
 
