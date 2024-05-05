@@ -2,9 +2,11 @@ from rest_framework import serializers
 
 from posts.models import Post
 from comments.api.serializers import CommentSerializer
+from likes.api.serializers import LikeSerializer
 
 class PostSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
+    likes = LikeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
@@ -13,6 +15,7 @@ class PostSerializer(serializers.ModelSerializer):
             "file",
             "caption",
             "created_at",
-            'comments'
+            'comments',
+            'likes'
         )
 
