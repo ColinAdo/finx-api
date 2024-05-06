@@ -17,8 +17,10 @@ class UserFollowView(APIView):
     serializer_class = UserFollowSerializer
 
     def get(self, request, pk):
-        following = UserFollow.objects.filter(user=request.user)
-        followers = UserFollow.objects.filter(follows=request.user)
+        User = get_user_model()
+        user = User.objects.get(pk=pk)
+        following = UserFollow.objects.filter(user=user)
+        followers = UserFollow.objects.filter(follows=user)
 
         following_serializer = UserFollowSerializer(following, many=True)
         followers_serializer = UserFollowSerializer(followers, many=True)
