@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
-from rest_framework import generics
+
+from rest_framework import generics, permissions
 
 from chats.api.serializers import ChatSerializer, MessageSerializer
+from core.authentications import CustomJWTAuthentication    
 
 from chats.models import Chat, Contact, Message
 
@@ -16,6 +18,8 @@ def get_user_contact(username):
 
 class ChatListCreateView(generics.ListAPIView):
     serializer_class = ChatSerializer
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         queryset = Chat.objects.all()
@@ -29,10 +33,14 @@ class ChatListCreateView(generics.ListAPIView):
 class ChatDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class MessageDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MessageSerializer
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
         message_id = self.kwargs['message_pk']
