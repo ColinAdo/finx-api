@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path("chat/", include("chats.urls")),
     path('admin/', admin.site.urls),
     path('api/', include('djoser.urls')),
     path('api/', include('accounts.urls')),
