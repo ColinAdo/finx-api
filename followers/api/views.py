@@ -24,7 +24,19 @@ class UserFollowView(APIView):
 
         following_serializer = UserFollowSerializer(following, many=True)
         followers_serializer = UserFollowSerializer(followers, many=True)
-        return Response({"success": True, "following": following_serializer.data, "followers": followers_serializer.data})
+
+        following_count = len(following_serializer.data)
+        followers_count = len(followers_serializer.data)
+
+        return Response(
+            {
+                "success": True, 
+                "following": following_serializer.data, 
+                "following_count": following_count,
+                "followers": followers_serializer.data,
+                "followers_count": followers_count,
+
+            })
 
         
     def post(self, request, pk):
