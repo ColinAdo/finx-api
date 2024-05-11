@@ -8,7 +8,7 @@ def user_directory_path(instance, filename):
 
 
 class Profile(models.Model):
-    owner = models.OneToOneField(CustomUser, related_name='profile_data', on_delete=models.CASCADE)
+    owner = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     header = models.CharField(max_length=200, blank=True, null=True)
     profession = models.CharField(max_length=200, blank=True, null=True)
     profile_picture = models.ImageField(max_length=200, default="profile.png", upload_to=user_directory_path)
