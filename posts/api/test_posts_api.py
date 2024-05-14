@@ -52,6 +52,8 @@ class PostsApiTestCase(APITestCase):
         self.assertContains(response, str(self.user.id))
 
     def test_retrieve_post(self):
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
+
         url = reverse("posts-detail", kwargs={"pk": self.post.id})
         response = self.client.get(url)
 
@@ -61,4 +63,28 @@ class PostsApiTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         self.assertContains(response, self.post.caption)
+
+    def test_update_post(self):
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
+
+        url = reverse("posts-detail", kwargs={"pk": self.post.id})
+        data = {
+            "author": self.user.id,
+            "caption": "updated caption",
+        }
+        response = self.client.put(url, data, format='json')
+
+        self.post.refresh_from_db()
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(self.post.caption, "updated caption")
+
+    def test_delete_post(self):
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
+
+        url = reverse("posts-detail", kwargs={"pk": self.post.id})
+        response = self.client.delete(url)
+
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Post.objects.count(), 0)
 
