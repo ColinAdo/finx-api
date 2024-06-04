@@ -2,7 +2,7 @@ from django.test import TestCase
 from profiles.models import Profile
 from accounts.models import CustomUser
 
-
+# Profile test case
 class TestProfile(TestCase):
 
     @classmethod
@@ -19,12 +19,10 @@ class TestProfile(TestCase):
         self.assertEqual(self.user.username, 'testuser')
 
     def test_profile_data(self):
-        # Attempt to retrieve the profile for the user
         profile = Profile.objects.filter(owner=self.user).first()
         profile.header = 'Expert software developer'
         profile.save()
 
-        # Assert that profile exists
         self.assertIsNotNone(profile, "Profile should exist")
         self.assertEqual(profile.owner.username, 'testuser')
         self.assertEqual(profile.profile_picture, 'profile.png')

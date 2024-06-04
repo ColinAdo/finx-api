@@ -4,6 +4,7 @@ from profiles.models import Profile
 from .serializers import ProfileSerializers
 from .permissions import IsOwnerOrReadOnly
 
+# Profile viewset
 class ProfileViewset(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializers

@@ -6,7 +6,7 @@ from accounts.models import CustomUser
 def user_directory_path(instance, filename):
     return "profile/{0}/{1}".format(instance.owner.username, filename)
 
-
+# Profile model
 class Profile(models.Model):
     owner = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     header = models.CharField(max_length=200, blank=True, null=True)
