@@ -6,6 +6,7 @@ import magic
 def user_directory_path(instance, filename):
     return "posts/{0}/{1}".format(instance.author.username, filename)
 
+# Post model
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     file = models.FileField(upload_to=user_directory_path, null=True,blank=True)

@@ -4,6 +4,7 @@ from posts.models import Post
 from comments.api.serializers import CommentSerializer
 from likes.api.serializers import LikeSerializer
 
+# Post serializer
 class PostSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
     comments_count = serializers.SerializerMethodField()

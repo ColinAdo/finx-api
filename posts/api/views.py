@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions
 
 from posts.api.serializers import PostSerializer
@@ -6,6 +5,7 @@ from posts.api.permissions import IsOwnerOrReadOnly
 
 from posts.models import Post
 
+# Post viewset
 class PostviewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer

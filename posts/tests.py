@@ -3,6 +3,7 @@ from django.test import TestCase
 
 from .models import Post
 
+# Post test case
 class TestPost(TestCase):
 
     @classmethod

@@ -8,7 +8,7 @@ from rest_framework_simplejwt.tokens import AccessToken
 from posts.models import Post
 from posts.api.serializers import PostSerializer
 
-
+# Post api test case
 class PostsApiTestCase(APITestCase):
 
     @classmethod
