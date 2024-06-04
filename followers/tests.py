@@ -3,6 +3,7 @@ from django.test import TestCase
 from accounts.models import CustomUser
 from followers.models import UserFollow
 
+# User follow test case
 class TestUserFollowers(TestCase):
     @classmethod
     def setUpTestData(cls):
