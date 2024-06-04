@@ -4,6 +4,7 @@ from comments.models import Comment
 from posts.models import Post
 from accounts.models import CustomUser
 
+# Comment test case
 class TestComment(TestCase):
     @classmethod
     def setUpTestData(cls):

@@ -7,6 +7,7 @@ def directory_path(instance, filename):
     return "comments/{0}/{1}".format(instance.owner.name, filename)
 
 
+# Comment model
 class Comment(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)

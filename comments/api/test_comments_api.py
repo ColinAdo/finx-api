@@ -9,6 +9,7 @@ from .serializers import CommentSerializer
 from comments.models import Comment
 from posts.models import Post
 
+# Comment api test case
 class TestComment(APITestCase):
     @classmethod
     def setUpTestData(cls):

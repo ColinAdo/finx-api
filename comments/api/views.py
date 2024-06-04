@@ -3,6 +3,7 @@ from .serializers import CommentSerializer
 from comments.models import Comment
 from profiles.api.permissions import IsOwnerOrReadOnly
 
+# Comment viewset
 class CommentViewset(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
