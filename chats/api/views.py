@@ -16,6 +16,7 @@ def get_user_contact(username):
     return contact
 
 
+# Chat list view
 class ChatListCreateView(generics.ListAPIView):
     serializer_class = ChatSerializer
     authentication_classes = [CustomJWTAuthentication]
@@ -29,14 +30,14 @@ class ChatListCreateView(generics.ListAPIView):
             queryset = contact.chats.all()
         return queryset
 
-
+# Chat detail view
 class ChatDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-
+# Chat message view
 class MessageDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MessageSerializer
     authentication_classes = [CustomJWTAuthentication]

@@ -12,12 +12,14 @@ class ContactSerializer(serializers.ModelSerializer):
         model = Contact
         fields = '__all__'
 
+#  Message serialiser class 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = '__all__'
 
 
+#  Chat serialiser class 
 class ChatSerializer(serializers.ModelSerializer):
     participants = ContactSerializer(many=True, read_only=True)
     messages = MessageSerializer(many=True, read_only=True)
