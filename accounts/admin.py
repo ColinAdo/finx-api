@@ -4,6 +4,7 @@ from django.contrib import admin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
+# Custom user admin
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm

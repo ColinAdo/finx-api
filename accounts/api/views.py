@@ -3,6 +3,7 @@ from rest_framework import generics
 
 from accounts.api.serializers import UserSerializer
 
+# User views
 User = get_user_model()
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()

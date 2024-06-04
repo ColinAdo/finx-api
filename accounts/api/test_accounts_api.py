@@ -32,9 +32,7 @@ class UserApiTestCase(APITestCase):
         self.assertEqual(response.data, expected_data)
         self.assertContains(response, self.user)
 
-        # for user_data in expected_data:
-        #     user_data['profile_picture'] = f"http://testserver{user_data['profile_picture']}"
-        
+
     def test_retrieve_users(self):
         url = reverse("user-detail", kwargs={"pk": self.user.id})
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
