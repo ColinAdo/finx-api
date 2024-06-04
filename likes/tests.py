@@ -4,7 +4,7 @@ from accounts.models import CustomUser
 from posts.models import Post
 from likes.models import LikePost
 
-
+# Like post test case
 class TestLikePost(TestCase):
     @classmethod
     def setUpTestData(cls):

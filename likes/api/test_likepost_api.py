@@ -5,10 +5,10 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from rest_framework_simplejwt.tokens import AccessToken 
 
-from .serializers import LikeSerializer
 from likes.models import LikePost
 from posts.models import Post
 
+# Like post api test case
 class TestLikePost(APITestCase):
     @classmethod
     def setUpTestData(cls):

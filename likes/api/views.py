@@ -7,6 +7,7 @@ from .serializers import LikeSerializer
 from posts.models import Post
 from likes.models import LikePost
 
+# Like post view
 class LikePostView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = LikeSerializer
