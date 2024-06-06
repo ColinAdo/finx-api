@@ -4,6 +4,7 @@ from django.utils.html import mark_safe
 
 from .models import Post
 
+# Post admin 
 class PostAdmin(ModelAdmin):
     list_display = ["author", "display_file", "caption", "created_at"]
 
