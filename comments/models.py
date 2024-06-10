@@ -2,7 +2,7 @@ from django.db import models
 from posts.models import Post
 from django.conf import settings
 
-
+# file directory 
 def directory_path(instance, filename):
     return "comments/{0}/{1}".format(instance.owner.name, filename)
 
