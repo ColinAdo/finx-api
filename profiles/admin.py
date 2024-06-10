@@ -4,7 +4,7 @@ from django.utils.html import mark_safe
 
 from profiles.models import Profile
 
-
+# Profile admin
 class ProfileAdmin(ModelAdmin):
     list_display = [
         "owner", 
