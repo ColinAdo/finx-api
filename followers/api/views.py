@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import permissions
-from core.authentications import CustomJWTAuthentication
 
 from followers.models import UserFollow
 from .serializers import UserFollowSerializer
@@ -13,7 +12,6 @@ from .serializers import UserFollowSerializer
 # User follow views
 class UserFollowView(APIView):
     queryset = UserFollow.objects.all()
-    authentication_classes = [CustomJWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = UserFollowSerializer
 
