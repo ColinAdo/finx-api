@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
     'comments.apps.CommentsConfig',
     'likes.apps.LikesConfig',
-    'followers.apps.FollowersConfig',
+    'social.apps.SocialConfig',
     'chats.apps.ChatsConfig',
 ]
 
