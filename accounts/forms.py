@@ -10,7 +10,8 @@ class CustomUserCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields + (
             "email",
             )
-        
+
+# Adding update user fields to AbstractUser        
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
