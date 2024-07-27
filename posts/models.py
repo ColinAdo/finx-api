@@ -3,6 +3,7 @@ from django.db import models
 
 import magic
 
+# user dir path
 def user_directory_path(instance, filename):
     return "posts/{0}/{1}".format(instance.author.username, filename)
 
