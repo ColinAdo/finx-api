@@ -18,6 +18,7 @@ class PostAdmin(ModelAdmin):
     display_file.short_description = 'File'
 
 
+# Comment admin
 class CommentAdmin(ModelAdmin):
     list_display = ["user", "post", "created_at"]
 
