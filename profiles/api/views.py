@@ -1,11 +1,14 @@
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 
-from profiles.models import Profile
 from .serializers import ProfileSerializers
 from .permissions import IsOwnerOrReadOnly
+
+from profiles.models import Profile
+
 from posts.api.serializers import PostSerializer
 from posts.models import Post
+
 from social.models import UserFollow
 from social.api.serializers import UserFollowSerializer
 
