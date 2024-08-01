@@ -8,7 +8,6 @@ from rest_framework import permissions
 from social.models import UserFollow
 from .serializers import UserFollowSerializer
 
-
 # User follow views
 class UserFollowView(APIView):
     queryset = UserFollow.objects.all()
