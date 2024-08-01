@@ -7,4 +7,4 @@ class UserFollow(models.Model):
     follows = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='des_follow', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.username} followers"
+        return f'{self.user.username} followers'
