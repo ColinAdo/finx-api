@@ -4,9 +4,10 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics, permissions
 
 from chats.api.serializers import ChatSerializer, MessageSerializer
+from chats.models import Chat, Contact, Message
+
 from core.authentications import CustomJWTAuthentication    
 
-from chats.models import Chat, Contact, Message
 
 # Helper function to get user contact
 def get_user_contact(username):
