@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from chats.models import Chat, Contact, Message
-
 from accounts.api.serializers import UserSerializer
 
 #  Contact serialiser class 
