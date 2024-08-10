@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'social_django',
     'rest_framework',
     'djoser',
+    'django_coverage_plugin',
 
     # local apps
     'accounts.apps.AccountsConfig',
