@@ -13,6 +13,8 @@ omit =
     */settings.py
     */urls.py
     */manage.py
+    */core/authentication.py
+    */core/signals.py
     .venv/*
 
 [html]
