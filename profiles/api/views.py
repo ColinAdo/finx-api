@@ -37,15 +37,15 @@ class ProfileViewset(viewsets.ModelViewSet):
             followers_count = len(serialized_followers.data)
 
             data = {
-                "profile": serialized_profile.data,
-                "following": serialized_followers.data,
-                "following_count": followers_count,
-                "followers": serialized_following.data,
-                "followers_count": following_count,
-                "posts": serialized_post.data
+                'profile': serialized_profile.data,
+                'following': serialized_followers.data,
+                'following_count': followers_count,
+                'followers': serialized_following.data,
+                'followers_count': following_count,
+                'posts': serialized_post.data
             }
         except:
-            return Response({"Message": "User profile does not exist..."})
+            return Response({'Message': 'User profile does not exist...'})
 
 
         return Response(data)
