@@ -8,6 +8,7 @@ from rest_framework import permissions
 from social.models import UserFollow
 from .serializers import UserFollowSerializer
 
+
 # User follow views
 class UserFollowView(APIView):
     queryset = UserFollow.objects.all()
@@ -28,11 +29,11 @@ class UserFollowView(APIView):
 
         return Response(
             {
-                "success": True, 
-                "following": following_serializer.data, 
-                "following_count": following_count,
-                "followers": followers_serializer.data,
-                "followers_count": followers_count,
+                'success': True, 
+                'following': following_serializer.data, 
+                'following_count': following_count,
+                'followers': followers_serializer.data,
+                'followers_count': followers_count,
 
             })
 
@@ -45,12 +46,12 @@ class UserFollowView(APIView):
 
             if not follower[1]:
                 follower[0].delete()
-                return Response({"success": True, "message": f"You unfollowed {following.username}"})
+                return Response({'success': True, 'message': f'You unfollowed {following.username}'})
             
             else:
-                return Response({"success": True, "message": f"You followed {following.username}"})
+                return Response({'success': True, 'message': f'You followed {following.username}'})
 
         except ObjectDoesNotExist:
-            return Response({"success": False, "message": "following user does not exist"})
+            return Response({'success': False, 'message': 'following user does not exist'})
     
 
