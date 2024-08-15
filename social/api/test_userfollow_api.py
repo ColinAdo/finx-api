@@ -7,6 +7,7 @@ from rest_framework_simplejwt.tokens import AccessToken
 
 from social.models import UserFollow
 
+
 # User follow test case
 class TestUserFollow(APITestCase):
     @classmethod
