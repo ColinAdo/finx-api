@@ -7,10 +7,10 @@ from profiles.models import Profile
 # Profile admin
 class ProfileAdmin(ModelAdmin):
     list_display = [
-        "owner", 
-        "header",
-        "profession", 
-        "display_image",
+        'owner', 
+        'header',
+        'profession', 
+        'display_image',
     ]
 
     def display_image(self, obj):
