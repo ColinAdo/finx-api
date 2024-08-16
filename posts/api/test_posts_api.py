@@ -16,14 +16,14 @@ class PostsApiTestCase(APITestCase):
     def setUpTestData(cls):
         cls.User = get_user_model()
         cls.user = cls.User.objects.create(
-            username="TestUser",
-            email="TestEmail@example.com",
-            password="TestPassword"
+            username='TestUser',
+            email='TestEmail@example.com',
+            password='TestPassword'
         )
 
         cls.post = Post.objects.create(
             author=cls.user,
-            caption="This is a test post"
+            caption='This is a test post'
         )
         cls.access_token = AccessToken.for_user(cls.user)
 
@@ -31,8 +31,8 @@ class PostsApiTestCase(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
         url = reverse('posts-list')
         data = {
-            "author": self.user.id,
-            "caption": "This is a test post2"
+            'author': self.user.id,
+            'caption': 'This is a test post2'
         }
         response = self.client.post(url, data, format='json')
 
@@ -55,7 +55,7 @@ class PostsApiTestCase(APITestCase):
     def test_retrieve_post(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
 
-        url = reverse("posts-detail", kwargs={"pk": self.post.id})
+        url = reverse('posts-detail', kwargs={'pk': self.post.id})
         response = self.client.get(url)
 
         obj = Post.objects.get(id=self.post.id)
@@ -68,22 +68,22 @@ class PostsApiTestCase(APITestCase):
     def test_update_post(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
 
-        url = reverse("posts-detail", kwargs={"pk": self.post.id})
+        url = reverse('posts-detail', kwargs={'pk': self.post.id})
         data = {
-            "author": self.user.id,
-            "caption": "updated caption",
+            'author': self.user.id,
+            'caption': 'updated caption',
         }
         response = self.client.put(url, data, format='json')
 
         self.post.refresh_from_db()
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(self.post.caption, "updated caption")
+        self.assertEqual(self.post.caption, 'updated caption')
 
     def test_delete_post(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
 
-        url = reverse("posts-detail", kwargs={"pk": self.post.id})
+        url = reverse('posts-detail', kwargs={'pk': self.post.id})
         response = self.client.delete(url)
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
