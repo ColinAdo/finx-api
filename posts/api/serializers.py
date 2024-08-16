@@ -21,10 +21,10 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            "id",
-            "file",
-            "caption",
-            "created_at",
+            'id',
+            'file',
+            'caption',
+            'created_at',
             'comments',
             'comments_count',
             'likes',
