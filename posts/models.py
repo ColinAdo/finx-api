@@ -5,7 +5,7 @@ import magic
 
 # user dir path
 def user_directory_path(instance, filename):
-    return "posts/{0}/{1}".format(instance.author.username, filename)
+    return 'posts/{0}/{1}'.format(instance.author.username, filename)
 
 # Post model
 class Post(models.Model):
@@ -18,12 +18,12 @@ class Post(models.Model):
         file_path = self.file.path
         mime = magic.from_file(file_path, mime=True)
 
-        if mime.startswith("image"):
-            return "image"
-        elif mime.startswith("video"):
-            return "video"
+        if mime.startswith('image'):
+            return 'image'
+        elif mime.startswith('video'):
+            return 'video'
         else:
-            return "unknown file type"
+            return 'unknown file type'
         
 
     def __str__(self):
