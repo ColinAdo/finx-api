@@ -6,7 +6,12 @@ from .models import Post
 
 # Post admin 
 class PostAdmin(ModelAdmin):
-    list_display = ["author", "display_file", "caption", "created_at"]
+    list_display = [
+        'author', 
+        'display_file', 
+        'caption', 
+        'created_at'
+    ]
 
     def display_file(self, obj):
         if obj.file and obj.get_file_type() == "image":
@@ -14,7 +19,7 @@ class PostAdmin(ModelAdmin):
         elif obj.file and obj.get_file_type() == "video":
             return mark_safe('<a href="{}"> <video width="30" height="30" style="border-radius: 50%;" src="{}"></video>  </a>'.format(obj.file.url, obj.file.url))
         else:
-            return "text post"
+            return 'text post'
     display_file.short_description = 'File'
 
 
