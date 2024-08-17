@@ -22,7 +22,7 @@ class TestComment(TestCase):
         cls.comment = Comment.objects.create(
             owner=cls.user,
             post=cls.post,
-            comment="First comment"
+            comment='First comment'
         )
 
     def test_comment_data(self):
