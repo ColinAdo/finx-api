@@ -76,13 +76,13 @@ class TestComment(APITestCase):
         data = {
             "owner": self.user.id,
             "post": self.post.id,
-            "comment": "updated comment"
+            "comment": 'updated comment'
         }
         response = self.client.put(url, data, format='json')
         self.comment.refresh_from_db()
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(self.comment.comment, "updated comment")
+        self.assertEqual(self.comment.comment, 'updated comment')
 
     def test_delete_comment(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
