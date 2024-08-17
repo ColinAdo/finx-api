@@ -19,10 +19,10 @@ class LikePostView(APIView):
             like_post = LikePost.objects.filter(post=post)
 
             serializer = LikeSerializer(like_post, many=True)
-            return Response({"success": True, "like_post": serializer.data})
+            return Response({'success': True, 'like_post': serializer.data})
 
         except ObjectDoesNotExist:
-            return Response({"success": False, "message": "post does not exist"})
+            return Response({'success': False, 'message': 'post does not exist'})
         
     def post(self, request, pk):
         try:
@@ -31,9 +31,9 @@ class LikePostView(APIView):
 
             if not new_like_post[1]:
                 new_like_post[0].delete()
-                return Response({"success": True, "message": "post unliked"})
+                return Response({'success': True, 'message': 'post unliked'})
             else:
-                return Response({"success": True, "message": "post liked"})
+                return Response({'success': True, 'message': 'post liked'})
             
         except ObjectDoesNotExist:
-            return Response({ "success": False, "message": "post does not exist" })
+            return Response({ 'success': False, 'message': 'post does not exist' })
