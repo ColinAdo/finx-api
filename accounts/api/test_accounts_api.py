@@ -14,16 +14,16 @@ class UserApiTestCase(APITestCase):
     def setUpTestData(cls):
         cls.User = get_user_model()
         cls.user = cls.User.objects.create(
-            username="TestUser",
-            email="TestUser@example.com",
-            password="TestUser",
+            username='TestUser',
+            email='TestUser@example.com',
+            password='TestUser',
         )
         cls.access_token = AccessToken.for_user(cls.user)
 
     def test_get_users(self):
-        url = reverse("users")
+        url = reverse('users')
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        response = self.client.get(url, format="json")
+        response = self.client.get(url, format='json')
 
         queryset = self.User.objects.all()
         expected_data = UserSerializer(queryset, many=True).data
@@ -35,9 +35,9 @@ class UserApiTestCase(APITestCase):
 
 
     def test_retrieve_users(self):
-        url = reverse("user-detail", kwargs={"pk": self.user.id})
+        url = reverse('user-detail', kwargs={'pk': self.user.id})
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        response = self.client.get(url, format="json")
+        response = self.client.get(url, format='json')
 
         obj = self.User.objects.get(pk=self.user.id)
         expected_data = UserSerializer(obj).data
