@@ -9,10 +9,10 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     list_display = [
-        "username",
-        "email",
-        "is_active",
-        "is_superuser",
+        'username',
+        'email',
+        'is_active',
+        'is_superuser',
     ]
 
 
