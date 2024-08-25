@@ -4,7 +4,7 @@ from accounts.models import CustomUser
 
 # upload directory path
 def user_directory_path(instance, filename):
-    return "profile/{0}/{1}".format(instance.owner.username, filename)
+    return 'profile/{0}/{1}'.format(instance.owner.username, filename)
 
 
 # Profile model
