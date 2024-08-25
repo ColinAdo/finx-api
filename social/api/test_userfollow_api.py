@@ -10,6 +10,7 @@ from social.models import UserFollow
 
 # User follow test case
 class TestUserFollow(APITestCase):
+    
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
