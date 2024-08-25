@@ -11,6 +11,7 @@ from .serializers import UserFollowSerializer
 
 # User follow views
 class UserFollowView(APIView):
+    
     queryset = UserFollow.objects.all()
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = UserFollowSerializer
