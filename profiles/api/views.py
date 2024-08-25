@@ -14,6 +14,7 @@ from social.api.serializers import UserFollowSerializer
 
 # Profile viewset
 class ProfileViewset(viewsets.ModelViewSet):
+    
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializers
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
