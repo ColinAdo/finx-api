@@ -6,6 +6,7 @@ from social.models import UserFollow
 
 # User follow test case
 class TestUserFollowers(TestCase):
+    
     @classmethod
     def setUpTestData(cls):
         cls.user1 = CustomUser.objects.create(
