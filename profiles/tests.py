@@ -5,6 +5,7 @@ from accounts.models import CustomUser
 
 # Profile test case
 class TestProfile(TestCase):
+    
     @classmethod
     def setUpTestData(cls):
         cls.user = CustomUser.objects.create(
