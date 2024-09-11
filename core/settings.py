@@ -225,6 +225,6 @@ AWS_SES_FROM_EMAIL = os.getenv('AWS_SES_FROM_EMAIL')
 USE_SES_V2 = True
 
 DOMAIN = os.getenv("DOMAIN")
-SITE_NAME = "Finix"
+SITE_NAME = "Finx"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
