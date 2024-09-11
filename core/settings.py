@@ -44,13 +44,13 @@ INSTALLED_APPS = [
     'django_coverage_plugin',
 
     # local apps
-    'accounts.apps.AccountsConfig',
-    'profiles.apps.ProfilesConfig',
-    'posts.apps.PostsConfig',
-    'comments.apps.CommentsConfig',
-    'likes.apps.LikesConfig',
-    'social.apps.SocialConfig',
-    'chats.apps.ChatsConfig',
+    'accounts',
+    'profiles',
+    'posts',
+    'comments',
+    'likes',
+    'social',
+    'chats',
 ]
 
 # Channels
