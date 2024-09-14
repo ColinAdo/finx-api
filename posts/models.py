@@ -10,8 +10,8 @@ def user_directory_path(instance, filename):
 # Post model
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    file = models.FileField(upload_to=user_directory_path, null=True,blank=True)
-    caption = models.TextField(blank=True)
+    fileUrl = models.FileField(upload_to=user_directory_path)
+    caption = models.TextField(null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_file_type(self):
