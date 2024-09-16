@@ -14,10 +14,10 @@ class PostAdmin(ModelAdmin):
     ]
 
     def display_file(self, obj):
-        if obj.file and obj.get_file_type() == "image":
-            return mark_safe('<a href="{}"> <img src="{}" width="30" height="30" style="border-radius: 50%;" /> </a>'.format(obj.file.url, obj.file.url))
-        elif obj.file and obj.get_file_type() == "video":
-            return mark_safe('<a href="{}"> <video width="30" height="30" style="border-radius: 50%;" src="{}"></video>  </a>'.format(obj.file.url, obj.file.url))
+        if obj.fileUrl.endswith('.png') or obj.fileUrl.endswith('.jpg'):
+            return mark_safe('<a href="{}"> <img src="{}" width="30" height="30" style="border-radius: 50%;" /> </a>'.format(obj.fileUrl, obj.fileUrl))
+        elif obj.fileUrl.endswith('.mp4'):
+            return mark_safe('<a href="{}"> <video width="30" height="30" style="border-radius: 50%;" src="{}"></video>  </a>'.format(obj.fileUrl, obj.fileUrl))
         else:
             return 'text post'
     display_file.short_description = 'File'

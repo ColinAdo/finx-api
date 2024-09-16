@@ -22,7 +22,7 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = (
             'id',
-            'file',
+            'fileUrl',
             'caption',
             'created_at',
             'comments',
