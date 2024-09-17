@@ -9,7 +9,7 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('accounts.urls')),
     path('api/v1/', include('accounts.api.urls')),
-    path('api/v1/', include('profiles.api.urls')),
+    # path('api/v1/', include('profiles.api.urls')),
     path('api/v1/', include('posts.api.urls')),
     path('api/v1/', include('comments.api.urls')),
     path('api/v1/', include('likes.api.urls')),

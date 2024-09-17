@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     # local apps
     'accounts',
-    'profiles',
     'posts',
     'comments',
     'likes',
