@@ -3,9 +3,11 @@ from rest_framework import serializers
 from posts.models import Post
 from comments.api.serializers import CommentSerializer
 from likes.api.serializers import LikeSerializer
+from accounts.api.serializers import UserSerializer
 
 # Post serializer
 class PostSerializer(serializers.ModelSerializer):
+    author = UserSerializer(read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
     comments_count = serializers.SerializerMethodField()
 
@@ -22,6 +24,7 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = (
             'id',
+            'author',
             'fileUrl',
             'caption',
             'created_at',
