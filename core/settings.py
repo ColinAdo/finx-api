@@ -44,13 +44,12 @@ INSTALLED_APPS = [
     'django_coverage_plugin',
 
     # local apps
-    'accounts.apps.AccountsConfig',
-    'profiles.apps.ProfilesConfig',
-    'posts.apps.PostsConfig',
-    'comments.apps.CommentsConfig',
-    'likes.apps.LikesConfig',
-    'social.apps.SocialConfig',
-    'chats.apps.ChatsConfig',
+    'accounts',
+    'posts',
+    'comments',
+    'likes',
+    'social',
+    'chats',
 ]
 
 # Channels
@@ -126,7 +125,7 @@ DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'TOKEN_MODEL': None,
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.getenv('REDIRECT_URLS').split(',')
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.getenv('REDIRECT_URIS').split(','),
 }
 
 # cors header settings
@@ -138,8 +137,7 @@ CORS_ALLOWED_ORIGINS = os.getenv(
 CORS_ALLOW_CREDENTIALS = True
 
 AUTH_COOKIE = 'access'
-AUTH_COOKIE_ACCESS_MAX_AGE = 60 * 5
-AUTH_COOKIE_REFRESH_MAX_AGE = 60 * 60 * 24
+AUTH_COOKIE_MAX_AGE = 60 * 60 * 24
 AUTH_COOKIE_HTTP_ONLY = True
 AUTH_COOKIE_PATH = '/'
 AUTH_COOKIE_SAMESITE = 'None'
@@ -162,12 +160,19 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
 ]
 SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
-SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('FACEBOOK_AUTH_KEY')
-SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('FACEBOOK_AUTH_SECRET_KEY')
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'email, first_name, last_name'
-}
+# Github Oauth settings
+SOCIAL_AUTH_GITHUB_KEY = os.getenv('GITHUB_OAUTH_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = os.getenv('GITHUB_OAUTH_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = [
+    'read:user',
+    'user:email'
+]
+
+SOCIAL_AUTH_GITHUB_EXTRA_DATA = [
+    ('login', 'username'),
+    ('email', 'email'),
+    ('name', 'name')
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -225,6 +230,6 @@ AWS_SES_FROM_EMAIL = os.getenv('AWS_SES_FROM_EMAIL')
 USE_SES_V2 = True
 
 DOMAIN = os.getenv("DOMAIN")
-SITE_NAME = "Finix"
+SITE_NAME = "Finx"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
