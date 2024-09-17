@@ -23,7 +23,7 @@ class ProfileViewset(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated, IsOwnerOrReadOnly])
     def me(self, request):
         user = User.objects.get(id=request.user.id)
         serializer = UserSerializer(user, context={'request': request}) 
