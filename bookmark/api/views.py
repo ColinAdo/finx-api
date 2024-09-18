@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import get_user_model
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,8 +16,8 @@ class BookmarkView(APIView):
 
     def get(self, request, pk):
         try:
-            post = Post.objects.get(pk=pk)
-            bookmark_post = Bookmark.objects.filter(post=post)
+            user = get_user_model().objects.get(pk=pk)
+            bookmark_post = Bookmark.objects.filter(user=user)
 
             serializer = BookmarkSerializer(bookmark_post, many=True)
             return Response({'success': True, 'bookmark_post': serializer.data})
