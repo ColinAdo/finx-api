@@ -4,6 +4,7 @@ from posts.models import Post
 from comments.api.serializers import CommentSerializer
 from likes.api.serializers import LikeSerializer
 from accounts.api.serializers import UserSerializer
+from bookmark.api.serializer import BookmarkSerializer
 
 # Post serializer
 class PostSerializer(serializers.ModelSerializer):
@@ -13,7 +14,13 @@ class PostSerializer(serializers.ModelSerializer):
 
     likes = LikeSerializer(many=True, read_only=True)
     likes_count = serializers.SerializerMethodField()
+    bookmarks = BookmarkSerializer(many=True, read_only=True)
+    bookmark_count = serializers.SerializerMethodField()
 
+
+    def get_bookmark_count(self, obj):
+        return obj.bookmarks.count()
+    
     def get_likes_count(self, obj):
         return obj.likes.count()
     
@@ -31,6 +38,8 @@ class PostSerializer(serializers.ModelSerializer):
             'comments',
             'comments_count',
             'likes',
-            'likes_count'
+            'likes_count',
+            'bookmarks',
+            'bookmark_count'
         )
 

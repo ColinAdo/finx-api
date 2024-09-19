@@ -1,10 +1,12 @@
 from rest_framework import serializers
 
 from comments.models import Comment
+from accounts.api.serializers import UserSerializer
 
 # Comment serializer
 class CommentSerializer(serializers.ModelSerializer):
-    commented_by = serializers.ReadOnlyField(source='owner.username')
+    owner = UserSerializer(read_only=True)
+    
     class Meta:
         model = Comment
         fields = (
@@ -12,6 +14,6 @@ class CommentSerializer(serializers.ModelSerializer):
             'comment',
             'comment_image',
             'created_at',
-            'commented_by',
+            'owner',
             'post'
         )

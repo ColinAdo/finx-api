@@ -7,7 +7,7 @@ from posts.models import Post
 
 # Post viewset
 class PostviewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-created_at')
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 

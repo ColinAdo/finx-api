@@ -13,6 +13,7 @@ urlpatterns = [
     path('api/v1/', include('posts.api.urls')),
     path('api/v1/', include('comments.api.urls')),
     path('api/v1/', include('likes.api.urls')),
+    path('api/v1/', include('bookmark.api.urls')),
     path('api/v1/', include('social.api.urls')),
     path('api/v1/', include('chats.api.urls')),
 ]
