@@ -2,7 +2,7 @@ from rest_framework import viewsets, permissions
 
 from .serializers import CommentSerializer
 from comments.models import Comment
-from accounts.api.permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 
 # Comment viewset
 class CommentViewset(viewsets.ModelViewSet):
