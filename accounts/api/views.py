@@ -47,3 +47,36 @@ class ProfileViewset(viewsets.ModelViewSet):
 
         return Response(data)
 
+
+class UsersProfileViewset(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+
+    @action(detail=False, methods=['get'], url_path='p/(?P<username>[^/.]+)', url_name='profile')
+    def profile(self, request, username=None):
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response({"detail": "User not found."}, status=404)
+
+        serializer = UserSerializer(user, context={'request': request})
+
+        posts = Post.objects.filter(author=user)
+        serialized_post = PostSerializer(posts, many=True, context={'request': request})
+
+        following = UserFollow.objects.filter(user=user)
+        followers = UserFollow.objects.filter(follows=user)
+        serialized_following = UserFollowSerializer(following, many=True, context={'request': request})
+        serialized_followers = UserFollowSerializer(followers, many=True, context={'request': request})
+
+        data = {
+            'profile': serializer.data,
+            'posts': serialized_post.data,
+            'following': serialized_followers.data,
+            'following_count': len(serialized_followers.data),
+            'followers': serialized_following.data,
+            'followers_count': len(serialized_following.data),
+        }
+
+        return Response(data)
