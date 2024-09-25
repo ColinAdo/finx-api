@@ -7,7 +7,7 @@ def user_directory_path(instance, filename):
 # Custom user model
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=255)
+    username = models.CharField(max_length=255, unique=True)
     header = models.CharField(max_length=200, blank=True, null=True)
     profession = models.CharField(max_length=200, blank=True, null=True)
     profile_picture = models.ImageField(max_length=200, default='profile.png', upload_to=user_directory_path)
