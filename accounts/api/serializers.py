@@ -1,11 +1,9 @@
-# accounts/api/serializers.py
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
-    profile_picture = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -23,8 +21,8 @@ class UserSerializer(serializers.ModelSerializer):
             'date_joined',
         )
 
-    def get_profile_picture(self, obj):
-        request = self.context.get('request', None)  # Safely get the request object
-        if request and obj.profile_picture and hasattr(obj.profile_picture, 'url'):
-            return request.build_absolute_uri(obj.profile_picture.url)  # Build absolute URI
-        return None  # Return None if there's no request or profile picture
+    # def get_profile_picture(self, obj):
+    #     request = self.context.get('request', None)  # Safely get the request object
+    #     if request and obj.profile_picture and hasattr(obj.profile_picture, 'url'):
+    #         return request.build_absolute_uri(obj.profile_picture.url)  # Build absolute URI
+    #     return None  # Return None if there's no request or profile picture
