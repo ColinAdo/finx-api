@@ -18,8 +18,27 @@ class CustomUserAdmin(UserAdmin):
     ]
 
     def display_file(self, obj):
-        return mark_safe('<a href="{}"> <img src="{}" width="30" height="30" style="border-radius: 50%;" /> </a>'.format(obj.profile_picture.url, obj.profile_picture.url))
+        return mark_safe('<a href="{}"> <img src="{}" width="30" height="30" style="border-radius: 50%;" /> </a>'.format(obj.profile_picture, obj.profile_picture))
         
     display_file.short_description = 'File'
+
+    fieldsets = UserAdmin.fieldsets + ((None, {"fields": (
+        "profile_picture",
+        "profession",
+        "header",
+        "github",
+        "instagram",
+        "linkedin",
+        "x",
+        )}),)
+    add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields": (
+        "profile_picture",
+        "profession",
+        "header",
+        "github",
+        "instagram",
+        "linkedin",
+        "x",
+        )}),)
 
 admin.site.register(CustomUser, CustomUserAdmin)
