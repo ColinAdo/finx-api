@@ -12,6 +12,7 @@ class CustomUserCreationForm(UserCreationForm):
             'bio',
             'profile_picture',
             'website',
+            'gender',
             )
 
 # Adding update user fields to AbstractUser        

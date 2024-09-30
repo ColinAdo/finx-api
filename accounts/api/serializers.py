@@ -11,13 +11,10 @@ class UserSerializer(serializers.ModelSerializer):
             'id', 
             'username', 
             'email',
-            'header',
-            'profession',
+            'bio',
             'profile_picture',
-            'github',
-            'instagram',
-            'x',
-            'linkedin',
+            'website',
+            'gender',
             'date_joined',
         )
 

@@ -26,11 +26,13 @@ class CustomUserAdmin(UserAdmin):
         "profile_picture",
         "bio",
         "website",
+        "gender",
         )}),)
     add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields": (
          "profile_picture",
         "bio",
         "website",
+        "gender",
         )}),)
 
 admin.site.register(CustomUser, CustomUserAdmin)
