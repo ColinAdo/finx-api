@@ -9,13 +9,9 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = UserCreationForm.Meta.fields + (
             'email',
-            'header',
-            'profession',
+            'bio',
             'profile_picture',
-            'github',
-            'instagram',
-            'x',
-            'linkedin',
+            'website',
             )
 
 # Adding update user fields to AbstractUser        

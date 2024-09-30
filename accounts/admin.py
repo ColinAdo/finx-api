@@ -24,21 +24,13 @@ class CustomUserAdmin(UserAdmin):
 
     fieldsets = UserAdmin.fieldsets + ((None, {"fields": (
         "profile_picture",
-        "profession",
-        "header",
-        "github",
-        "instagram",
-        "linkedin",
-        "x",
+        "bio",
+        "website",
         )}),)
     add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields": (
-        "profile_picture",
-        "profession",
-        "header",
-        "github",
-        "instagram",
-        "linkedin",
-        "x",
+         "profile_picture",
+        "bio",
+        "website",
         )}),)
 
 admin.site.register(CustomUser, CustomUserAdmin)
