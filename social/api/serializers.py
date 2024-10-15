@@ -4,8 +4,6 @@ from social.models import UserFollow
 
 # UserFollow serializer
 class UserFollowSerializer(serializers.ModelSerializer):
-    # user = serializers.PrimaryKeyRelatedField(read_only=True)
-    # follows = serializers.PrimaryKeyRelatedField(read_only=True)
     user = serializers.SerializerMethodField()
     follows = serializers.SerializerMethodField()
 
