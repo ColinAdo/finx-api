@@ -10,4 +10,4 @@ def decode_jwt_token(token):
         user_id = payload.get('user_id')
         return User.objects.get(id=user_id)
     except (jwt.ExpiredSignatureError, jwt.InvalidTokenError, User.DoesNotExist):
-        return None  # Return None if the token is invalid or the user doesn't exist
+        return None
