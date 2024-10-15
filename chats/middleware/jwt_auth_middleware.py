@@ -10,14 +10,14 @@ class JWTAuthMiddleware:
 
     async def __call__(self, scope, receive, send):
         headers = dict(scope['headers'])
-        scope['user'] = None  # Default to None in case the token isn't found or invalid
+        scope['user'] = None  
         
         if b'cookie' in headers:
             cookies = headers[b'cookie'].decode()
             token = self.get_jwt_token_from_cookies(cookies)
             if token:
-                user = await self.get_user_from_token(token)  # Await here
-                if user:  # Ensure the user exists
+                user = await self.get_user_from_token(token) 
+                if user: 
                     scope['user'] = user
                 else:
                     logger.error("User could not be retrieved from the token.")
@@ -26,7 +26,7 @@ class JWTAuthMiddleware:
 
     def get_jwt_token_from_cookies(self, cookies):
         cookie_dict = {cookie.split("=")[0]: cookie.split("=")[1] for cookie in cookies.split("; ")}
-        return cookie_dict.get("access")  # Ensure the correct cookie name is used
+        return cookie_dict.get("access")
 
     async def get_user_from_token(self, token):
         # Decode the token and return the user object
