@@ -1,8 +1,6 @@
 from django.conf import settings
 from django.db import models
 
-import magic
-
 # Post model
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
