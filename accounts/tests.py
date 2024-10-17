@@ -13,7 +13,6 @@ class UserTests(TestCase):
             password='admin1111'
         )
 
-
     def test_user_fields(self):
         user = self.User.objects.get(id=1)
         
