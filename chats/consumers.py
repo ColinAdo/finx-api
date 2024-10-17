@@ -4,6 +4,7 @@ from channels.generic.websocket import WebsocketConsumer
 
 from accounts.api.serializers import UserSerializer
 
+# Chat Consumer
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
         user = self.scope.get('user')
