@@ -41,7 +41,6 @@ class ChatConsumer(WebsocketConsumer):
             user.profile_picture = filename
             user.save()
 
-            # Serialize updated user data
             serialized = UserSerializer(user)
 
             # Broadcast updated profile picture to the group
