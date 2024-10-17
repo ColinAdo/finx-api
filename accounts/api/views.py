@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 
-
 from accounts.api.serializers import UserSerializer
 
 from posts.models import Post
