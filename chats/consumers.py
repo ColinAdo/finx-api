@@ -1,14 +1,13 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-
 from accounts.api.serializers import UserSerializer
 
-# Chat Consumer
+# Chat consumer
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
         user = self.scope.get('user')
-        if not user.is_authenticated:
+        if not user or not user.is_authenticated:
             self.close()
             return
 
@@ -27,7 +26,7 @@ class ChatConsumer(WebsocketConsumer):
 
     def receive(self, text_data):
         data = json.loads(text_data)
-        data_source = data.get('source')
+        data_source = data.get('type')
 
         print("Received", json.dumps(data, indent=2))
 
@@ -37,31 +36,28 @@ class ChatConsumer(WebsocketConsumer):
     def receive_profile_picture(self, data):
         user = self.scope.get('user')
         filename = data.get('profile_picture')
-        if filename:
+        
+        if filename and user:
             user.profile_picture = filename
             user.save()
 
             serialized = UserSerializer(user)
 
-            # Broadcast updated profile picture to the group
-            self.send_group(self.username, 'update_profile_picture', serialized.data)
+            self.send_group(self.username, serialized.data)
 
-    def send_group(self, group, source, data):
-        response = {
-            'type': 'profile_picture_updated',
-            'source': source,
-            'profile_picture': data['profile_picture']
-        }
+    def send_group(self, group, data):
         async_to_sync(self.channel_layer.group_send)(
-            group, response
+            group,
+            {
+                'type': 'profile_picture_updated', 
+                'profile_picture': data,
+            }
         )
-
 
     def profile_picture_updated(self, event):
         profile_picture_data = event['profile_picture']
 
-        # Send updated profile data to the connected client
         self.send(text_data=json.dumps({
             'type': 'profile_picture_updated',
-            'profile_picture': profile_picture_data
+            'profile_picture': profile_picture_data,
         }))
