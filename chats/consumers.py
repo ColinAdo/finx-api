@@ -3,8 +3,8 @@ from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 from accounts.api.serializers import UserSerializer
 
-# Chat consumer
-class ChatConsumer(WebsocketConsumer):
+# Thumbnail consumer
+class ThumbnailConsumer(WebsocketConsumer):
     def connect(self):
         user = self.scope.get('user')
         if not user or not user.is_authenticated:
