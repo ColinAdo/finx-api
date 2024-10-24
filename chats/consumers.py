@@ -65,6 +65,7 @@ class ThumbnailConsumer(WebsocketConsumer):
             'profile_picture': profile_picture_data,
         }))
 
+# Chat consumer
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
