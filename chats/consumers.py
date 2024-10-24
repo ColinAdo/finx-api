@@ -72,8 +72,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         self.room_group_name = f'chat_{self.room_name}'
 
         # Join room
-        print(self.room_group_name)
-
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
@@ -107,7 +105,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'name': name
             }
         )
-        user = self.scope['user']
 
         await self.save_message(conversation_id, body, sent_to_id)
     
