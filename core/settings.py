@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 import dotenv
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -215,6 +217,9 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATIC_ROOT = os.path.join(BASE_DIR,  'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -235,3 +240,5 @@ DOMAIN = os.getenv("DOMAIN")
 SITE_NAME = "Finx"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+django_heroku.settings(locals())
