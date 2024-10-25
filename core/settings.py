@@ -162,6 +162,11 @@ AUTH_COOKIE_PATH = '/'
 AUTH_COOKIE_SAMESITE = 'None'
 AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE', 'True') == 'True'
 
+# Cookie settings for the backend
+SESSION_COOKIE_SECURE = True  # Ensure this is True when using HTTPS
+SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-site cookies if your frontend is on a different subdomain in the future
+SESSION_COOKIE_DOMAIN = "finx-api-00ec7aa68e8b.herokuapp.com"  # Your actual backend domain
+
 # social auth settings
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
