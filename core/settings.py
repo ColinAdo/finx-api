@@ -254,6 +254,6 @@ USE_SES_V2 = True
 DOMAIN = os.getenv("DOMAIN")
 SITE_NAME = "Finx"
 
+django_heroku.settings(locals())
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-django_heroku.settings(locals())
