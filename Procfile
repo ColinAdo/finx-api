@@ -1,1 +1,1 @@
-web gunicorn core.wsgi:application --log-file -
+web: DJANGO_SETTINGS_MODULE=core.settings daphne -p 8000 core.asgi:application
