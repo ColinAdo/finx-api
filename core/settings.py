@@ -57,14 +57,34 @@ INSTALLED_APPS = [
 
 # Channels
 ASGI_APPLICATION = 'core.asgi.application'
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("127.0.0.1", 6379)],
+#         },
+#     },
+# }
+
+if DEBUG:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [("127.0.0.1", 6379)],  
+            },
         },
-    },
-}
+    }
+else:
+    redis_uri = os.environ.get("REDIS_URI") 
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [redis_uri], 
+            },
+        },
+    }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
