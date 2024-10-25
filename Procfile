@@ -1,1 +1,1 @@
-web: daphne core.asgi:application
+web gunicorn core.wsgi:application --log-file -
