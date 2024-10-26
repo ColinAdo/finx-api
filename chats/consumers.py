@@ -6,6 +6,8 @@ from channels.generic.websocket import WebsocketConsumer, AsyncWebsocketConsumer
 from accounts.api.serializers import UserSerializer
 from .models import ConversationMessage
 
+import logging
+
 # Thumbnail consumer
 class ThumbnailConsumer(WebsocketConsumer):
     def connect(self):
@@ -19,6 +21,7 @@ class ThumbnailConsumer(WebsocketConsumer):
             self.username, self.channel_name
         )
         self.accept()
+        logging.info(f'User connected to room: {self.username}')
         print(f"{self.username} connected")
 
     def disconnect(self, close_code):
