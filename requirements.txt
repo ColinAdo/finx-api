@@ -1,5 +1,4 @@
 asgi-redis==1.4.3
-asgiref==3.8.1
 async-timeout==4.0.3
 attrs==23.2.0
 autobahn==23.6.2
@@ -47,7 +46,7 @@ python-dotenv==1.0.1
 python-magic==0.4.27
 python3-openid==3.2.0
 pytz==2024.1
-redis==2.10.6
+redis==4.5.1
 requests==2.31.0
 requests-oauthlib==2.0.0
 s3transfer==0.10.1
