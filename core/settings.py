@@ -62,12 +62,25 @@ ASGI_APPLICATION = 'core.asgi.application'
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "BACKEND": "channels_redis.pubsub.RedisPubSubChannelLayer",
         "CONFIG": {
-            "hosts": [os.getenv('REDIS_URL', "redis://127.0.0.1:6379")],
+            "hosts": [{
+                "address": os.getenv('REDIS_TLS_URL', "rediss://user@host:port"),
+                "ssl_cert_reqs": None,
+            }],
         },
     },
 }
+
+
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [os.getenv('REDIS_URL', "redis://127.0.0.1:6379")],
+#         },
+#     },
+# }
 
 # CHANNEL_LAYERS = {
 #     "default": {
