@@ -16,6 +16,9 @@ class ConversationMessage(models.Model):
     sent_to = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='received_messages', on_delete=models.CASCADE)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='sent_messages', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.created_by} => {self.sent_to}"
     
 # contact model
 class Contact(models.Model):
