@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'chats',
 ]
 
-# WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 # Channels
 ASGI_APPLICATION = 'core.asgi.application'
