@@ -58,7 +58,7 @@ INSTALLED_APPS = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Channels
-ASGI_APPLICATION = 'core.routing.application'
+ASGI_APPLICATION = 'core.asgi.application'
 
 CHANNEL_LAYERS = {
     "default": {
