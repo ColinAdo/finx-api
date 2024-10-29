@@ -15,12 +15,20 @@ class UserFollowSerializer(serializers.ModelSerializer):
         return {
             'id': obj.user.id,
             'username': obj.user.username,
+            'email': obj.user.email,
+            'bio': obj.user.bio,
             'profile_picture': obj.user.profile_picture if obj.user.profile_picture else None,
+            'website': obj.user.website,
+            'gender': obj.user.gender
         }
 
     def get_follows(self, obj):
         return {
             'id': obj.follows.id,
             'username': obj.follows.username,
+            'email': obj.user.email,
+            'bio': obj.user.bio,
             'profile_picture': obj.follows.profile_picture if obj.follows.profile_picture else None,
+            'website': obj.user.website,
+            'gender': obj.user.gender
         }
