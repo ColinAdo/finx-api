@@ -170,7 +170,6 @@ DJOSER = {
 
 # cors header settings
 CORS_ALLOWED_ORIGINS = os.getenv(
-    'CORS_ALLOWED_ORIGINS', 
     'https://finx-9rny760fj-colinados-projects.vercel.app,http://localhost:3000,http://127.0.0.1:3000'
 ).split(',')
 
