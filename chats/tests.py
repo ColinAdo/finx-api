@@ -30,7 +30,7 @@ class TestConversation(TestCase):
         self.assertEqual(self.conversation1.users, [self.user1, self.user2])
         self.assertEqual(user_contact, 1)
 
-
+# Test for conversation messages
 class TestMessage(TestCase):
 
     @classmethod
