@@ -175,6 +175,11 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000'
 ]
 
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://finx-.*\.vercel\.app$",
+    r"^https://finx-api-.*\.herokuapp\.com$",
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
 # Cookie settings
