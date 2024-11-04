@@ -22,7 +22,7 @@ DEVELOPMENT_MODE = os.getenv('DEVELOPMENT_MODE', 'False') == 'True'
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG') 
 
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'finx-api-00ec7aa68e8b.herokuapp.com, 127.0.0.1,localhost').split(',')
 
