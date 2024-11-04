@@ -72,16 +72,6 @@ CHANNEL_LAYERS = {
     },
 }
 
-
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [os.getenv('REDIS_URL', "redis://127.0.0.1:6379")],
-#         },
-#     },
-# }
-
 # CHANNEL_LAYERS = {
 #     "default": {
 #         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -193,7 +183,7 @@ AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE', 'True') == 'True'
 # Cookie settings for the backend
 SESSION_COOKIE_SECURE = True  # Ensure this is True when using HTTPS
 SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-site cookies if your frontend is on a different subdomain in the future
-SESSION_COOKIE_DOMAIN = "finx-api-00ec7aa68e8b.herokuapp.com"  # Your actual backend domain
+SESSION_COOKIE_DOMAIN = "finx-api-00ec7aa68e8b.herokuapp.com"
 
 # social auth settings
 AUTHENTICATION_BACKENDS = (
