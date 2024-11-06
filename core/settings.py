@@ -179,7 +179,7 @@ AUTH_COOKIE_MAX_AGE = 60 * 60 * 24
 AUTH_COOKIE_HTTP_ONLY = True
 AUTH_COOKIE_PATH = '/'
 AUTH_COOKIE_SAMESITE = 'None'
-AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE', 'True') == 'True'
+AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE')
 
 # Cookie settings for the backend
 SESSION_COOKIE_SECURE = True  # Ensure this is True when using HTTPS
