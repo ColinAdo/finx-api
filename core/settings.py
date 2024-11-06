@@ -170,7 +170,9 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://finx-api-.*\.herokuapp\.com$",
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 # Cookie settings
 AUTH_COOKIE = 'access'
