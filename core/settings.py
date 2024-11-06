@@ -184,7 +184,8 @@ AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE', 'True') == 'True'
 # Cookie settings for the backend
 SESSION_COOKIE_SECURE = True  # Ensure this is True when using HTTPS
 SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-site cookies if your frontend is on a different subdomain in the future
-SESSION_COOKIE_DOMAIN = "finx-api-00ec7aa68e8b.herokuapp.com"
+SESSION_COOKIE_DOMAIN = '.vercel.app'
+# SESSION_COOKIE_DOMAIN = "finx-api-00ec7aa68e8b.herokuapp.com"
 # SESSION_COOKIE_DOMAIN = ".vercel.app"  # Set domain to include all Vercel subdomains
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
