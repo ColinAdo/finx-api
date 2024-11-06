@@ -170,8 +170,7 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://finx-api-.*\.herokuapp\.com$",
 ]
 
-# CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Cookie settings
@@ -186,6 +185,9 @@ AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE', 'True') == 'True'
 SESSION_COOKIE_SECURE = True  # Ensure this is True when using HTTPS
 SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-site cookies if your frontend is on a different subdomain in the future
 SESSION_COOKIE_DOMAIN = "finx-api-00ec7aa68e8b.herokuapp.com"
+# SESSION_COOKIE_DOMAIN = ".vercel.app"  # Set domain to include all Vercel subdomains
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
 
 # social auth settings
 AUTHENTICATION_BACKENDS = (
